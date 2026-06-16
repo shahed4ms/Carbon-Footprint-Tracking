@@ -1,0 +1,110 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f7f9;
+}
+
+.dashboard {
+  min-height: 100vh;
+}
+
+.header {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: white;
+  padding: 30px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: -40px auto 20px;
+}
+
+.cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1;
+  min-width: 220px;
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+  margin: 0;
+  color: #16a34a;
+}
+
+.main-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.panel {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #15803d;
+}
+
+.history {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.score-good {
+  color: green;
+  font-weight: bold;
+}
+
+@media(max-width:768px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+}
