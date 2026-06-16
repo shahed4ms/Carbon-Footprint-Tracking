@@ -8,26 +8,52 @@ const activityRoutes = require("./routes/activityRoutes");
 
 const app = express();
 
-// Middleware
-app.use(cors());
+// Security Middleware
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  }),
+);
+
 app.use(express.json());
 
-// MongoDB Connection
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.log(err));
-
-// Home Route
+// Health Check Route
 app.get("/", (req, res) => {
-  res.send("EcoTrack API Running");
+  res.status(200).json({
+    message: "EcoTrack API Running",
+    status: "OK",
+  });
 });
 
 // API Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/activity", activityRoutes);
 
-// Start Server
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on port ${process.env.PORT}`);
+// 404 Handler
+app.use((req, res) => {
+  res.status(404).json({
+    message: "Route not found",
+  });
 });
+
+// MongoDB Connection + Server Start
+const startServer = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+
+    console.log("MongoDB Connected");
+
+    const PORT = process.env.PORT || 5000;
+
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error("Database Connection Error:", error.message);
+
+    process.exit(1);
+  }
+};
+
+startServer();

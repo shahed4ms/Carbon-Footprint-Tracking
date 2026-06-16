@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import api from "../services/api";
 
 function Dashboard() {
@@ -8,13 +8,6 @@ function Dashboard() {
   const [food, setFood] = useState("vegetarian");
   const [result, setResult] = useState(null);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      window.location.href = "/";
-    }
-  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
